@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <title>Message!</title>
+
+        <style>
+            /* Adapted from https://stackoverflow.com/questions/1572701/css-thin-banner-on-top-of-page-like-the-orange-one-on-this-page */
+            .banner
+            {
+               position: fixed;
+               top: 0;
+               left: 0;
+               background-color: #3bdeff;
+               width: 100%;
+            }
+
+            .banner-content
+            {
+                width: 800px;
+                margin: 0 auto;
+                padding: 10px;
+                text-align: center;
+                color: #02055e;
+            }
+
+            .main-content
+            {
+                padding: 140px;
+            }
+
+            .lower-banner
+            {
+                bottom: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                position: fixed;
+                width: 75%;
+
+            }
+
+            td
+            {
+                white-space: pre-line;
+                word-wrap: break-word;
+                word-break: break-all;
+                overflow: hidden;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="banner">
+            <div class="banner-content display-6">
+                Welcome to Message!
+            </div>
+        </div>
+
+        <div class="main-content">
+            <table class="table table-sm">
+
+                    <thead>
+                        <tr style="font-size: 18pt;">
+                            <td>User</td>
+                            <td>Message</td>
+                            <td>Time</td>
+                        </tr>
+                    </thead>
+
+                    {% for message in messages %}
+
+                        <tr class="table-borderless">
+                          <td>{{ message["name"] }}</td>
+                          <td>{{ message["message"] }}</td>
+                          <td>{{ message["time"] }}</td>
+                        </tr>
+
+                    {% endfor %}
+
+
+            </table>
+
+            <div class="lower-banner">
+
+            <form action="/send" method="post">
+
+
+                <!-- Input pattern documentation https://input-pattern.com/en/tutorial.php -->
+                <div class="row">
+                    <div class="col">
+                        <input autocomplete="off" type="text" class="form-control" placeholder="Name" aria-label="Name" name="name" pattern=[A-Za-z0-9]{1,20} maxlength="20" title="Please enter only up to 20 alphanumeric characters!" required>
+                    </div>
+                    <div class="col">
+                        <input autocomplete="off" type="text" class="form-control" placeholder="Message" aria-label="Message" name="message" pattern=[!-~ ]{1,60} maxlength="60" title="Plese only include English text" required>
+                    </div>
+                    <button class="btn btn-primary col" type="submit">Send</button>
+                </div>
+
+            </form>
+        </div>
+
+        </div>
+
+    </body>
+
+</html>

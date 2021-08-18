@@ -1,0 +1,36 @@
+sort1 uses: bubble sort
+
+How do you know?: see below
+
+sort2 uses: merge sort
+
+How do you know?: see below
+
+sort3 uses: selection sort
+
+How do you know?: see below
+
+random5000.txt
+sort1 = 0.092s
+sort2 = 0.011s
+sort3 = 0.034s
+
+can't tell
+
+sorted5000.txt
+sort1 = 0.009s
+sort2 = 0.011s
+sort3 = 0.085s
+
+sort 1 looks like bubble sort
+sort 2 looks like merge sort
+sort 3 looks like selection sort
+
+reversed5000.txt
+sort1 = 0.110s
+sort2 = 0.010s
+sort3 = 0.034s
+
+sort 1 looks like bubble sort
+sort 2 looks like merge sort
+sort 3 looks like selection sort
