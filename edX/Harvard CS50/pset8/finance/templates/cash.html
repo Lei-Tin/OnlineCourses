@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cash
+{% endblock %}
+
+{% block main %}
+    <form action="/cash" method="post">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Cash</th>
+                    <th scope="col">Operation</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td class="text-center align-middle">{{ cashRemaining }}</td>
+                        <td>
+                            <select class="form-control" name="operation" required>
+                            <option disabled selected value>Select the operation</option>
+                            <option value="Add">Add</option>
+                            <option value="Subtract">Subtract</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" name="value" placeholder="Value" type="number" min="0.01" step="0.01" pattern="[0-9]" title="Please provide only numeric input" required>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <div>
+            <button class="btn btn-primary" type="submit">Proceed</button>
+        </div>
+    </form>
+{% endblock %}

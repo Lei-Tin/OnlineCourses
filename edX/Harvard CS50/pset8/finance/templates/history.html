@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+                <th scope="col">Transaction Time</th>
+                <th scope="col">Transaction Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- For row in row smth like that, make a table row everytime -->
+
+            {% for row in log %}
+                    <tr>
+                        <td>{{ row["symbol"] }}</td>
+                        <td>{{ row["name"] }}</td>
+
+                        <!-- Coloring convention of buy and sell in https://money.stackexchange.com/questions/29636/what-is-the-coloring-convention-should-i-adopt-for-buy-and-sell -->
+                        {% if row["transactionType"] == "Buy" %}
+                        <td>{{ row["shares"] }}</td>
+                        <td>-${{ row["price"] }}</td>
+                        <td>-${{ '%0.2f' | format((row["shares"] * row["price"]) | float)}}</td>
+                        <td>{{ row["transactionTime"] }}</td>
+                        <td style = "color: #198754"><strong>{{ row["transactionType"] }}</strong></td>
+                        {% endif %}
+
+                        {% if row["transactionType"] == "Sell" %}
+                        <td>-{{ row["shares"] }}</td>
+                        <td>${{ row["price"] }}</td>
+                        <td>${{ '%0.2f' | format((row["shares"] * row["price"]) | float)}}</td>
+                        <td>{{ row["transactionTime"] }}</td>
+                        <td style = "color: #dc3545"><strong>{{ row["transactionType"] }}</strong></td>
+                        {% endif %}
+
+                    </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

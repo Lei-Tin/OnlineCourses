@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <script>
+        function check(input) {
+            if (input.value != document.getElementById('password').value) {
+                input.setCustomValidity('Password Must be Matching.');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+    </script>
+
+    <style>
+        .text-muted
+        {
+            font-size:8pt;
+        }
+    </style>
+
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <div><label for="username" class="form-label">Username</label></div>
+            <input autocomplete="off" autofocus id="username" class="form-control" pattern="[A-Za-z0-9]{3,15}" title="Please use only 3-15 alphanumeric characters." name="username" type="text" required aria-describedby="usernameHelp">
+            <div id="usernameHelp" class="form-text text-muted">3-15 Alphanumeric Characters</div>
+        </div>
+        <div class="form-group">
+            <div><label for="password" class="form-label">Password</label></div>
+            <input class="form-control" name="password" pattern=".{3,18}" title="Please enter 3-18 characters" type="password" required id="password">
+            <div id="passwordHelp" class="form-text text-muted">3-18 Characters</div>
+        </div>
+        <div class="form-group">
+            <div><label for="passwordConfirm" class="form-label">Confirm Password</label></div>
+            <input class="form-control" name="passwordConfirm" type="password" required oninput="check(this)">
+            <div id="passwordConfirmHelp" class="form-text text-muted">Please type in your password again</div>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

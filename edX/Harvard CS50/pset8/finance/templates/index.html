@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- For row in row smth like that, make a table row everytime -->
+
+            {% for row in stocks %}
+                {% if row["shares"] != None and row["symbol"] != None %}
+                    <tr>
+                        <td>{{ row["symbol"] }}</td>
+                        <td>{{ row["name"] }}</td>
+                        <td>{{ row["shares"] }}</td>
+                        <td>${{ '%0.2f' | format(row["price"] | float) }}</td>
+                        <td>${{ '%0.2f' | format((row["shares"] * row["price"])|float)}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            <tr>
+                <td><em>CASH<em></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ cashRemaining }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{ totalSum }}<strong></td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

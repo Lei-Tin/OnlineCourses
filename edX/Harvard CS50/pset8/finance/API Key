@@ -1,0 +1,5 @@
+API Key from IEX Cloud
+Key: "pk_f3df0000d9c348a898091d1d2d428ed9"
+
+Whenever it says API_KEY not set, use this command
+"export API_KEY=pk_f3df0000d9c348a898091d1d2d428ed9"
